@@ -4,13 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MovieDetail extends StatefulWidget {
-    const MovieDetail({ Key? key }) : super(key: key);
+    String movieDetailTitle;
+    // const MovieDetail({ Key? key }) : super(key: key);
+    MovieDetail(this.movieDetailTitle);
 
     @override
-    _MovieDetailState createState() => _MovieDetailState();
+    _MovieDetailState createState() => _MovieDetailState(this.movieDetailTitle);
 }
 
 class _MovieDetailState extends State<MovieDetail> {
+    String movieDetailTitle;
+
+    _MovieDetailState(this.movieDetailTitle);
 
     XFile? _moviePoster;
     final ImagePicker _picker = ImagePicker(); 
@@ -73,7 +78,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
         return Scaffold(
             appBar: AppBar(
-                title: Text("Edit Movie"),
+                title: Text(movieDetailTitle),
             ),
 
             body: Padding(
