@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'movie_detail.dart';
 
 class MovieList extends StatefulWidget {
     const MovieList({ Key? key }) : super(key: key);
@@ -22,6 +23,7 @@ class _MovieListState extends State<MovieList> {
             floatingActionButton: FloatingActionButton(
                 onPressed: (){
                     debugPrint("Add movie");
+                    navigateToMovieDetail('Add Movie');
                 },
 
                 tooltip: 'To add Movie',
@@ -30,7 +32,6 @@ class _MovieListState extends State<MovieList> {
             ),
         );
     }
-
 
     ListView getMovieList() {
 
@@ -54,10 +55,17 @@ class _MovieListState extends State<MovieList> {
 
                         onTap: (){
                             debugPrint("list tile Tapped!");
+                            navigateToMovieDetail('Edit Movie');
                         }
                     )
                 );
             }
         );
+    }
+
+    void navigateToMovieDetail(String title){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+            return MovieDetail(title);
+        }));
     }
 }
