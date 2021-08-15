@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:watch_list/models/watchbox.dart';
+import 'package:watch_list/screens/boxes.dart';
+
 
 class MovieDetail extends StatefulWidget {
     String movieDetailTitle;
@@ -97,9 +100,23 @@ class _MovieDetailState extends State<MovieDetail> {
                                     Expanded(
                                         child: ElevatedButton(
                                             child: Text("Save"),
+                                            // onPressed: () async{
+                                            //     int i = await DatabaseHelper.instance.insert({
+                                            //         DatabaseHelper.columnTitle : titleController.text,
+                                            //         DatabaseHelper.columnUrl : urlController.text,
+                                            //         DatabaseHelper.columnDirector : directorController.text
+                                            //     });
+                                            //     debugPrint('Movie Inserted in $i');
+                                            // },
                                             onPressed: (){
-                                                debugPrint("Saved!");
-                                            },
+                                                final watchbox = WatchBox()
+                                                ..title = titleController.text
+                                                ..url = urlController.text
+                                                ..director = directorController.text;
+
+                                                final box = Boxes.getWatchBoxes();
+                                                box.add(watchbox);
+                                            }
                                         )
                                     ),
 
