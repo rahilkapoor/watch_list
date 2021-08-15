@@ -108,7 +108,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                             //     });
                                             //     debugPrint('Movie Inserted in $i');
                                             // },
-                                            onPressed: (){
+                                            onPressed: () async{
                                                 final watchbox = WatchBox()
                                                 ..title = titleController.text
                                                 ..url = urlController.text
@@ -116,6 +116,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
                                                 final box = Boxes.getWatchBoxes();
                                                 box.add(watchbox);
+                                                Navigator.pop(context);
                                             }
                                         )
                                     ),
