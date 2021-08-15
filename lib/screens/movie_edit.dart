@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:watch_list/models/watchbox.dart';
 import 'package:watch_list/screens/boxes.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 
-class MovieDetail extends StatefulWidget {
-    String movieDetailTitle;
-    MovieDetail(this.movieDetailTitle);
+
+class MovieEdit extends StatefulWidget {
+    WatchBox MovieEditCurr;
+    MovieEdit(this.MovieEditCurr);
 
     @override
-    _MovieDetailState createState() => _MovieDetailState(this.movieDetailTitle);
+    _MovieEditState createState() => _MovieEditState(this.MovieEditCurr);
 }
 
-class _MovieDetailState extends State<MovieDetail> {
-    String movieDetailTitle;
+class _MovieEditState extends State<MovieEdit> {
+    WatchBox MovieEditCurr;
 
-    _MovieDetailState(this.movieDetailTitle);
+    _MovieEditState(this.MovieEditCurr);
 
 
     TextEditingController urlController = TextEditingController();
@@ -26,7 +28,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
         return Scaffold(
             appBar: AppBar(
-                title: Text(movieDetailTitle),
+                title: Text("Edit Movie"),
             ),
 
             body: Padding(
@@ -34,6 +36,48 @@ class _MovieDetailState extends State<MovieDetail> {
 
                 child: ListView(
                     children: <Widget>[
+
+                        CircleAvatar(
+                            backgroundColor: Colors.amberAccent,
+                            radius: 80.0,
+                            child: CachedNetworkImage(
+                                imageUrl: MovieEditCurr.url,
+                                imageBuilder: (context, imageProvider) => Container(
+                                    decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                        colorFilter:
+                                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                                    ),
+                                ),
+                                placeholder: (context, url) => CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(Icons.error,size: 90.0,),
+                            ),
+                        ),
+
+                        Center(
+                            child:Column(
+                                children: <Widget>[
+                                    Padding(
+                                        padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
+                                        child: Text(
+                                            MovieEditCurr.title,
+                                            style: TextStyle(fontSize: 20.0),
+                                        )
+
+                                    ),
+
+                                    Padding(
+                                        padding: EdgeInsets.all(5.0),
+                                        child: Text(MovieEditCurr.director)
+
+                                    ),
+                                ],
+                            )
+                        ),
+
+                        
 
                         Padding(
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
@@ -44,7 +88,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                 // },
 
                                 decoration: InputDecoration(
-                                    labelText: 'Poster URL',
+                                    labelText: 'Edit URL',
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5.0)
                                     )
@@ -63,7 +107,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                 // },
 
                                 decoration: InputDecoration(
-                                    labelText: 'Movie Name',
+                                    labelText: 'Edit Movie Name',
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5.0)
                                     )
@@ -82,7 +126,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                 // },
 
                                 decoration: InputDecoration(
-                                    labelText: 'Director of the Movie',
+                                    labelText: 'Edit Director Name',
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5.0)
                                     )
@@ -100,24 +144,16 @@ class _MovieDetailState extends State<MovieDetail> {
                                     Expanded(
                                         child: ElevatedButton(
                                             child: Text("Save"),
-                                            // onPressed: () async{
-                                            //     int i = await DatabaseHelper.instance.insert({
-                                            //         DatabaseHelper.columnTitle : titleController.text,
-                                            //         DatabaseHelper.columnUrl : urlController.text,
-                                            //         DatabaseHelper.columnDirector : directorController.text
-                                            //     });
-                                            //     debugPrint('Movie Inserted in $i');
-                                            // },
                                             onPressed: () async{
-                                                final watchbox = WatchBox()
-                                                ..title = titleController.text
-                                                ..url = urlController.text
-                                                ..director = directorController.text;
-
-                                                final box = Boxes.getWatchBoxes();
-                                                box.add(watchbox);
+                                                if(titleController.text.length != 0)
+                                                    MovieEditCurr.title = titleController.text;
+                                                if(directorController.text.length != 0)
+                                                    MovieEditCurr.director = directorController.text;
+                                                if(urlController.text.length != 0)
+                                                    MovieEditCurr.url = urlController.text;
+                                                MovieEditCurr.save();
                                                 Navigator.pop(context);
-                                            }
+                                            },
                                         )
                                     ),
 
