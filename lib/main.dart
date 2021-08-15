@@ -20,12 +20,12 @@ class WatchList extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return MaterialApp(
-            title: 'WatchList',
+            title: "Watch List",
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
                 primarySwatch: Colors.amber
             ),
-            home: MovieList()
+            home: SafeArea(child:MovieList())
         );
     }
 }
