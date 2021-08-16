@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:watch_list/models/watchbox.dart';
-import 'package:watch_list/screens/boxes.dart';
+import 'package:watch_list/models/boxes.dart';
 import 'package:watch_list/screens/movie_edit.dart';
 import 'movie_detail.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -41,8 +41,7 @@ class _MovieListState extends State<MovieList> {
 
             floatingActionButton: FloatingActionButton(
                 onPressed: (){
-                    // debugPrint("Add movie");
-                    navigateToMovieDetail('Add Movie');
+                    navigateToMovieDetail();
                 },
 
                 tooltip: 'Click To Add Movie',
@@ -72,7 +71,6 @@ class _MovieListState extends State<MovieList> {
                     color: Colors.purpleAccent,
                     elevation: 2.0,
                     child: ListTile(
-                        
                         leading: CircleAvatar(
                             backgroundColor: Colors.purple,
                             
@@ -105,7 +103,6 @@ class _MovieListState extends State<MovieList> {
                         ),
 
                         onTap: (){
-                            // debugPrint("list tile Tapped!");
                             navigateToEditDetail(movie);
                         }
                     )
@@ -120,9 +117,9 @@ class _MovieListState extends State<MovieList> {
         }));
     }
 
-    void navigateToMovieDetail(String title){
+    void navigateToMovieDetail(){
         Navigator.push(context, MaterialPageRoute(builder: (context){
-            return MovieDetail(title);
+            return MovieDetail();
         }));
     }
 }

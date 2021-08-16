@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watch_list/models/watchbox.dart';
-import 'package:watch_list/screens/boxes.dart';
-
+// import 'package:watch_list/screens/boxes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 
 class MovieEdit extends StatefulWidget {
     WatchBox MovieEditCurr;
@@ -41,7 +39,6 @@ class _MovieEditState extends State<MovieEdit> {
                             backgroundColor: Colors.amberAccent,
                             radius: 80.0,
                             child: ClipOval(child: CachedNetworkImage(
-                            // child: CachedNetworkImage(
                                 imageUrl: MovieEditCurr.url,
                                 imageBuilder: (context, imageProvider) => Container(
                                     width: 160.0,
@@ -86,10 +83,6 @@ class _MovieEditState extends State<MovieEdit> {
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                             child: TextField(
                                 controller: urlController,
-                                // onChanged: (value){
-                                //     debugPrint("URL Changed!");
-                                // },
-
                                 decoration: InputDecoration(
                                     labelText: 'Edit URL',
                                     border: OutlineInputBorder(
@@ -105,10 +98,6 @@ class _MovieEditState extends State<MovieEdit> {
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                             child: TextField(
                                 controller: titleController,
-                                // onChanged: (value){
-                                //     debugPrint("Movie Changed!");
-                                // },
-
                                 decoration: InputDecoration(
                                     labelText: 'Edit Movie Name',
                                     border: OutlineInputBorder(
@@ -124,10 +113,6 @@ class _MovieEditState extends State<MovieEdit> {
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                             child: TextField(
                                 controller: directorController,
-                                // onChanged: (value){
-                                //     debugPrint("director Changed!");
-                                // },
-
                                 decoration: InputDecoration(
                                     labelText: 'Edit Director Name',
                                     border: OutlineInputBorder(

@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:watch_list/models/watchbox.dart';
-import 'package:watch_list/screens/boxes.dart';
+import 'package:watch_list/models/boxes.dart';
 
 
 class MovieDetail extends StatefulWidget {
-    String movieDetailTitle;
-    MovieDetail(this.movieDetailTitle);
-
     @override
-    _MovieDetailState createState() => _MovieDetailState(this.movieDetailTitle);
+    _MovieDetailState createState() => _MovieDetailState();
 }
 
 class _MovieDetailState extends State<MovieDetail> {
-    String movieDetailTitle;
-
-    _MovieDetailState(this.movieDetailTitle);
-
 
     TextEditingController urlController = TextEditingController();
     TextEditingController titleController = TextEditingController();
@@ -27,7 +20,7 @@ class _MovieDetailState extends State<MovieDetail> {
 
         return Scaffold(
             appBar: AppBar(
-                title: Text(movieDetailTitle),
+                title: Text("Add Movie"),
             ),
 
             body: Padding(
@@ -40,10 +33,6 @@ class _MovieDetailState extends State<MovieDetail> {
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                             child: TextField(
                                 controller: urlController,
-                                // onChanged: (value){
-                                //     debugPrint("URL Changed!");
-                                // },
-
                                 decoration: InputDecoration(
                                     labelText: 'Poster URL',
                                     border: OutlineInputBorder(
@@ -59,11 +48,6 @@ class _MovieDetailState extends State<MovieDetail> {
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                             child: TextField(
                                 controller: titleController,
-                                // onChanged: (value){
-                                //     debugPrint("Movie Changed!");
-                                // },
-                                
-
                                 decoration: InputDecoration(
                                     labelText: 'Movie Name',
                                     border: OutlineInputBorder(
@@ -79,10 +63,6 @@ class _MovieDetailState extends State<MovieDetail> {
                             padding: EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                             child: TextField(
                                 controller: directorController,
-                                // onChanged: (value){
-                                //     debugPrint("director Changed!");
-                                // },
-
                                 decoration: InputDecoration(
                                     labelText: 'Director of the Movie',
                                     border: OutlineInputBorder(
@@ -102,14 +82,6 @@ class _MovieDetailState extends State<MovieDetail> {
                                     Expanded(
                                         child: ElevatedButton(
                                             child: Text("Save"),
-                                            // onPressed: () async{
-                                            //     int i = await DatabaseHelper.instance.insert({
-                                            //         DatabaseHelper.columnTitle : titleController.text,
-                                            //         DatabaseHelper.columnUrl : urlController.text,
-                                            //         DatabaseHelper.columnDirector : directorController.text
-                                            //     });
-                                            //     debugPrint('Movie Inserted in $i');
-                                            // },
                                             onPressed: () async{
                                                 if(titleController.text.trim().length == 0) return null;
                                                 final watchbox = WatchBox()
