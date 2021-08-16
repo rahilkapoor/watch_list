@@ -40,13 +40,15 @@ class _MovieEditState extends State<MovieEdit> {
                         CircleAvatar(
                             backgroundColor: Colors.amberAccent,
                             radius: 80.0,
-                            child: CachedNetworkImage(
+                            child: ClipOval(child: CachedNetworkImage(
+                            // child: CachedNetworkImage(
                                 imageUrl: MovieEditCurr.url,
                                 imageBuilder: (context, imageProvider) => Container(
+                                    width: 160.0,
                                     decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: imageProvider,
-                                        fit: BoxFit.cover,
+                                        fit: BoxFit.fill,
                                         colorFilter:
                                             ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
                                     ),
@@ -54,6 +56,7 @@ class _MovieEditState extends State<MovieEdit> {
                                 placeholder: (context, url) => CircularProgressIndicator(),
                                 errorWidget: (context, url, error) => Icon(Icons.error,size: 90.0,),
                             ),
+                            )
                         ),
 
                         Center(

@@ -20,6 +20,7 @@ class _MovieDetailState extends State<MovieDetail> {
     TextEditingController urlController = TextEditingController();
     TextEditingController titleController = TextEditingController();
     TextEditingController directorController = TextEditingController();
+    bool validate = false;
 
     @override
     Widget build(BuildContext context) {
@@ -61,6 +62,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                 // onChanged: (value){
                                 //     debugPrint("Movie Changed!");
                                 // },
+                                
 
                                 decoration: InputDecoration(
                                     labelText: 'Movie Name',
@@ -109,6 +111,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                             //     debugPrint('Movie Inserted in $i');
                                             // },
                                             onPressed: () async{
+                                                if(titleController.text.trim().length == 0) return null;
                                                 final watchbox = WatchBox()
                                                 ..title = titleController.text
                                                 ..url = urlController.text

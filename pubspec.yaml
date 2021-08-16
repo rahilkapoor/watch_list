@@ -1,5 +1,5 @@
 name: watch_list
-description: A new Flutter project.
+description: Watch List Flutter App by Rahil Kapoor.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -33,12 +33,16 @@ dependencies:
   hive: ^2.0.4
   hive_flutter: ^1.1.0
   cached_network_image: ^3.1.0
+  firebase_core: "^1.4.0"
+  firebase_auth: "^3.0.1"
+  provider: ^5.0.0
+  google_sign_in: ^5.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner: ^2.1.1
+  # build_runner: ^2.1.1
   hive_generator: ^1.1.0
 
 # For information on the generic Dart part of this file, see the
