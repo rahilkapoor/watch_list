@@ -25,7 +25,9 @@ class WatchList extends StatelessWidget {
             theme: ThemeData(
                 primarySwatch: Colors.amber
             ),
-            home: SafeArea(child:MovieList())
+            home: SafeArea(
+                child: MovieList()
+            ),
         );
     }
 }
